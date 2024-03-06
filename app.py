@@ -28,10 +28,16 @@ def histogram():
     random_data_array = 100 + 15 * np.random.randn(count_of_points)
     plt.hist(random_data_array, input.number_of_bins(), density=True)
 
-@render.plot(alt="A scatterplot")
 def scatterplot():
-    iris = load_iris()
-    sns.relplot(
-        iris, x="petal_width", y="petal_length", hue="petal_length", style="species"
-    )
-    plt.show()
+    @render.plot(alt="A scatterplot")
+    def myplot():
+        iris = datasets.load_iris()
+        sns.relplot(
+            iris,
+            x="petal_width",
+            y="petal_length",
+            hue="petal_length",
+            style="species"
+        )
+        plt.show()
+
